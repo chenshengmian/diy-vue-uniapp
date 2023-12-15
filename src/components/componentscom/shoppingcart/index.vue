@@ -1,39 +1,52 @@
 <template>
     <div class="shoppingcart">
-        <van-card
-            num="2"
-            price="2.00"
-            desc="描述信息"
-            title="商品标题"
-            thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
+        <section  v-show="datas.rubiksCubeType === 0">
+            <van-card
+                :num="datas.num"
+                :price="datas.price+'.00'"
+                :desc="datas.Discount"
+                :title="datas.name"
+                :thumb="datas.bakcgroundImg ? datas.bakcgroundImg : 'https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg'"
+            />
+
+        </section>
+        
+
+        <section  v-show="datas.rubiksCubeType === 1">
+            <van-card
+            :num="datas.num"
+            :tag="datas.type"
+            :price="datas.price+'.00'"
+            :desc="datas.Discount"
+            :title="datas.name"
+            :thumb="datas.bakcgroundImg ? datas.bakcgroundImg : 'https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg'"
+            :origin-price="datas.Originalprice+'.00'"
         />
 
-        <van-card
-            num="2"
-            tag="标签"
-            price="2.00"
-            desc="描述信息"
-            title="商品标题"
-            thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
-            origin-price="10.00"
-        />
+        </section>
+       
 
-        <van-card
-            num="2"
-            price="2.00"
-            desc="描述信息"
-            title="商品标题"
-            thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
+        <section  v-show="datas.rubiksCubeType === 2">
+            <van-card
+            :num="datas.num"
+            :price="datas.price+'.00'"
+            :desc="datas.Discount"
+            :title="datas.name"
+            :thumb="datas.bakcgroundImg ? datas.bakcgroundImg : 'https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg'"
             >
             <template #tags>
-                <van-tag plain type="primary">标签</van-tag>
-                <van-tag plain type="primary">标签</van-tag>
+                <block v-for="(item,index) in datas.dynamicTags" :key="index">
+                    <van-tag plain type="primary">{{item}}</van-tag>
+                </block>
             </template>
             <template #footer>
-                <van-button size="mini">按钮</van-button>
-                <van-button size="mini">按钮</van-button>
+                <van-button size="mini">详情</van-button>
+                <van-button size="mini">删除</van-button>
         </template>
         </van-card>
+
+        </section>
+       
 
 
         <slot name="deles" />

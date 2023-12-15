@@ -468,7 +468,16 @@ componentProperties.set('shoppingcart', {
   setStyle: {
     text: '购物车',
     linktype: '10',
+    rubiksCubeType:0,
+    bakcgroundImg:'',
     http: {},
+    dynamicTags:['标签一', '标签二', '标签三'],
+    name:'商品标题',
+    Discount:'描述信息',
+    price:2,
+    Originalprice:10,
+    type:'Hot',
+    num:2
   },
 })
 

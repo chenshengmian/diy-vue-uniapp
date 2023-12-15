@@ -19,6 +19,7 @@
           ><i class="el-icon-delete-solid el-icon--left"></i>重置</el-button
         >
         <el-button @click="realTimeView.show = true">预览</el-button>
+        <!-- <el-button @click="handleSave">保存</el-button> -->
         <el-button @click="catJson">查看JSON </el-button>
         <el-button @click="$refs.file.click()">导入JSON </el-button>
         <el-button @click="exportJSON">导出JSON </el-button>
@@ -30,9 +31,9 @@
           @change="importJSON"
           style="display: none"
         />
-        <!-- <el-button @click="Preservation"
+        <el-button @click="Preservation"
           ><i class="el-icon-s-claim el-icon--left"></i>保存</el-button
-        > -->
+        >
       </div>
     </section>
     <!-- 装修操作 -->
