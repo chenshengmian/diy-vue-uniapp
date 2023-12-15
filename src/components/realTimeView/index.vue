@@ -7,7 +7,7 @@
         ref="iframe"
         class="screen"
         :scrolling="false"
-        :src="'http://was666.gitee.io/as-editor-h5/#/?type=iframe'"
+        :src="'http://localhost:8081/#/?type=iframe'"
         @load="load"
       ></iframe>
       <van-loading v-if="loading" size="24px" vertical>加载中</van-loading>
@@ -32,7 +32,8 @@ export default {
   methods: {
     load() {
       this.loading = false
-      this.$refs["iframe"].contentWindow.postMessage(this.val, "http://was666.gitee.io");
+      console.log(this.val)
+      this.$refs["iframe"].contentWindow.postMessage(this.val, "http://localhost:8081/#/");
     },
   },
 }

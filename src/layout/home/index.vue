@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+   
     <!-- 按钮集合 -->
     <section class="buttons">
       <p
@@ -34,7 +35,6 @@
         > -->
       </div>
     </section>
-
     <!-- 装修操作 -->
     <section class="operation">
       <!-- 组件 -->
@@ -89,7 +89,7 @@
           </section>
 
           <!-- 手机高度 -->
-          <div class="phoneSize">iPhone 8手机高度</div>
+          <div class="phoneSize">iPhone 8高度</div>
 
           <!-- 底部 -->
           <phoneBottom />
@@ -179,7 +179,7 @@ export default {
       pageComponents: [], //页面组件
       offsetY: 0, //记录上一次距离父元素高度
       pointer: { show: false }, //穿透
-      onlyOne: ['1-5', '1-16'], // 只能存在一个的组件(组件的type)
+      onlyOne: ['1-5', '1-19'], // 只能存在一个的组件(组件的type)
     }
   },
 

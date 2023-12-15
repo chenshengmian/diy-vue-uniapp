@@ -151,19 +151,19 @@ export default {
             },
             {
               text: '宫格',
-              type:'1-20',
+              type: '1-17',
               icon: 'el-icon-s-grid',
-              name:'ninesquaregrid'
+              name: 'squaregrid'
             },
             {
               text: '购物车',
-              type:'1-21',
+              type:'1-18',
               icon: 'el-icon-shopping-cart-1',
               name:'shoppingcart'
             },
             {
               text: '动作栏',
-              type:'1-23',
+              type:'1-19',
               icon: 'el-icon-s-promotion',
               name:'actionbar'
             },

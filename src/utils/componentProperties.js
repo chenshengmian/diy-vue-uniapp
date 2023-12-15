@@ -382,6 +382,7 @@ componentProperties.set('follow', {
     followAppId: '',
   },
 })
+
 componentProperties.set('suspension', {
   component: 'suspension',
   text: '悬浮按钮',
@@ -395,15 +396,15 @@ componentProperties.set('suspension', {
   },
 })
 
-componentProperties.set('ninesquaregrid', {
-  component: 'ninesquaregrid',
+componentProperties.set('squaregrid', {
+  component: 'squaregrid',
   text: '宫格',
-  type: '1-20',
+  type: '1-17',
   active: true,
-  style: 'ninesquaregridstyle',
+  style: 'squaregridstyle',
   setStyle: {
     text: '宫格',
-    linktype: '10',
+    //linktype: '10',
     gridarr:[
       {
         id:1,
@@ -455,6 +456,32 @@ componentProperties.set('ninesquaregrid', {
     http: {},
     iconwidths:28,
     iconheights:28
+  },
+})
+
+componentProperties.set('shoppingcart', {
+  component: 'shoppingcart',
+  text: '购物车',
+  type: '1-18',
+  active: true,
+  style: 'shoppingcartstyle',
+  setStyle: {
+    text: '购物车',
+    linktype: '10',
+    http: {},
+  },
+})
+
+componentProperties.set('actionbar', {
+  component: 'actionbar',
+  text: '动作栏',
+  type: '1-19',
+  active: true,
+  style: 'actionbarstyle',
+  setStyle: {
+    text: '动作栏',
+    linktype: '10',
+    http: {},
   },
 })
 

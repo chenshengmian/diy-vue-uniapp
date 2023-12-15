@@ -1,4 +1,5 @@
 import Vue from 'vue'
+//console.log(Vue)
 
 // 样式初始化
 import 'css/reset.css'
@@ -46,9 +47,13 @@ const requireComponent = require.context(
   // 匹配基础组件文件名的正则表达式
   /\.vue$/
 )
+// import ninesquaregrid from '@/components/componentscom/ninesquaregrid/index.vue'
+// Vue.component('ninesquaregrid', ninesquaregrid)
 requireComponent.keys().forEach(fileName => {
+  
   // 获取组件配置
   const componentConfig = requireComponent(fileName)
+  //console.log(componentConfig.default.name)
   // 全局注册组件
   Vue.component(
       componentConfig.default.name,   // 此处的name,是组件属性定义的name

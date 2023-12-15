@@ -8,6 +8,9 @@ Vue.config.productionTip = false
 // 引入配置
 import './permission'
 
+// import squaregrid from '@/components/componentscom/squaregrid/index.vue'
+// Vue.component('squaregrid',squaregrid)
+
 new Vue({
   router,
   store,

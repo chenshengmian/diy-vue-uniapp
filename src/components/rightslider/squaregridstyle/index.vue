@@ -1,5 +1,5 @@
 <template>
-  <div class="ninesquaregridstyle">
+  <div class="squaregridstyle">
     <!-- 标题 -->
     <h2>{{ datas.text }}</h2>
     <el-form label-width="100px" :model="datas" size="small">
@@ -37,6 +37,83 @@
                 :maxlength="2"
             />
         </el-form-item>
+        <el-form-item class="lef" label="宫图"> </el-form-item>
+        <vuedraggable v-model="datas.gridarr" v-bind="dragOptions">
+        <transition-group>
+          <section
+            class="imgBanner"
+            v-for="(item, index) in datas.gridarr"
+            :key="item + index"
+          >
+            <i class="el-icon-circle-close" @click="deleteimg(index)" />
+            <!-- 图片 -->
+            <div>
+              <div
+                class="imagBox"
+                v-for="replaceIconIndex in 1"
+                :key="replaceIconIndex"
+                @click="replaceIcon(replaceIconIndex, index)"
+              >
+                <img
+                  class="imag"
+                  :src="replaceIconIndex == 1 ? item.url : item.inactive"
+                  draggable="false"
+                />
+                <div>
+                  {{ replaceIconIndex == 1 ? '点击切换' : '未选中时' }}
+                </div>
+              </div>
+            </div>
+            <!-- 标题和链接 -->
+            <div class="imgText">
+              <div class="imgText-top">
+                <el-input
+                  v-model="item.text"
+                  placeholder="导航名称"
+                  size="mini"
+                />
+                <!-- <div class="imgText-top-r">
+                  <span>小圆点</span>
+                  <el-checkbox v-model="item.isDot"></el-checkbox>
+                </div> -->
+              </div>
+              <!-- 标题和链接 -->
+              <div class="imgTextChild">
+                <!-- 选择类型 -->
+                <el-select
+                  v-model="item.linktype"
+                  placeholder="请选择跳转类型"
+                  size="mini"
+                >
+                  <el-option
+                    v-for="iteml in optionsType"
+                    :key="iteml.name"
+                    :label="iteml.name"
+                    :value="iteml.type"
+                  >
+                  </el-option>
+                </el-select>
+
+                <!-- 输入链接 -->
+                <el-input
+                  size="mini"
+                  placeholder="请输入链接，输入前确保可以访问"
+                 
+                >
+                </el-input>
+              </div>
+            </div>
+          </section>
+        </transition-group>
+      </vuedraggable>
+        <el-button
+          @click="$refs.upload.showUpload()"
+          class="uploadImg"
+          type="primary"
+          plain
+        >
+          <i class="el-icon-plus" />点击添加宫格
+        </el-button>
        
     </el-form>
      <!-- 上传图片 -->
@@ -50,13 +127,10 @@
 
 <script>
 import uploadimg from '../../uploadImg' //图片上传
+import vuedraggable from 'vuedraggable' //拖拽组件
 
 export default {
-  name: 'ninesquaregridstyle',
-  components: {
-    uploadimg,
-    //vuedraggable,
-  },
+  name: 'squaregridstyle',
   props: {
     datas: Object,
   },
@@ -64,10 +138,24 @@ export default {
     return {
         replaceIconIndex: null,
         replaceIndex: null,
+        dragOptions: {
+          animation: 200,
+        },
+        optionsType: [
+        {
+          type: '10',
+          name: '内部链接',
+        },
+        {
+          type: '11',
+          name: '外部链接',
+        },
+      ], // 选择跳转类型
     }
   },
   components: {
     uploadimg,
+    vuedraggable
   },
   created() {
 
@@ -75,21 +163,22 @@ export default {
   methods: {
     // 提交
     uploadInformation(res) {
+      console.log(res)
       if (this.replaceIconIndex == 1) {
-        this.datas.iconList[this.replaceIndex].iconPic = res
+        this.datas.gridarr[this.replaceIndex].url = res
         this.replaceIconIndex = null
         return
       }
       if (this.replaceIconIndex == 2) {
-        this.datas.iconList[this.replaceIndex].inactive = res
+        this.datas.gridarr[this.replaceIndex].inactive = res
         this.replaceIconIndex = null
         return
       }
-      this.datas.iconList.push({
+      this.datas.gridarr.push({
         /** 图标名称文字 */
-        iconText: '',
+        text: '',
         /** 图标图片 */
-        iconPic: res,
+        url: res,
         inactive: res,
         /** 是否显示小圆点 */
         isDot: false,
@@ -105,7 +194,7 @@ export default {
     },
     /* 删除图片 */
     deleteimg(index) {
-      this.datas.iconList.splice(index, 1)
+      this.datas.gridarr.splice(index, 1)
     },
     /* 点击图片 */
     replaceIcon(replaceIconIndex, replaceIndex) {
@@ -119,7 +208,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-    .ninesquaregridstyle{
+    .squaregridstyle{
         width: 100%;
         position: absolute;
         left: 0;
